@@ -2,7 +2,7 @@ name: Access variables on linux
 
 runs:
   on:
-    push
+    push:
 
 
 jobs:
@@ -16,25 +16,25 @@ jobs:
         echo $Greeting
       env:
         Greeting: Hello
-	  
+    
     - name: Default Environment Variables that github set
       run: |
         echo $GITHUB_WORKSPACE
-	  
+	
     - name: Defining environment variables for a workflow using env keyword
       run: |
         echo $Greeting
-        
+    
     - name: Storing and access shell variable for a step
       run: |
         VERSION = $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
         echo $VERSION
-        
+    
     - name: Is the above variable set a environment variable?
       run: |	  
         echo $VERSION | env
         env
-		
+    
     - name: Create and access global environment variable for linux (bash)
       run: |
         export variable1="valueExport" | set variable2="valueSet" 
@@ -43,27 +43,27 @@ jobs:
         set variable3="valueSet" | export variable4="valueExport
         echo $variable3
         echo $variable4
-	  
+	
     - name: Use environment variable set in above step
       run: |
         echo $variable1
         echo $variable2
         echo $variable3
         echo $variable4
-	  
+    
     - name: Generate value in one step and use it in other step (GITHUB_ENV)
       run: |
         echo "action_state=yellow" >> "$GITHUB_ENV"
         echo $action_state  | true
-	    
+	
     - name: Use variable set in above step
       run: |
         echo $action_state
-	  
+	
     - name: Is the above variable set a environment variable?
       run: |
         env
-	  
+	
 		  
     - name: Access Already set environment variable on runner
       run: |
