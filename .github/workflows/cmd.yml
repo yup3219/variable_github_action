@@ -1,64 +1,71 @@
-name: Access variables on linux
+name: Access variables on windows
 on:
   push:
 
 
 jobs:
-  bash:
-    name: Access variable on bash
-    runs-on: ubuntu-latest
+  cmd:
+    name: Access variable on cmd
+    runs-on: self-hosted
     steps:
     - name: Print all environment variable
       run: |
-        env
+        set
+      shell: cmd
     
     - name: Default Environment Variables that github set
       run: |
-        echo $GITHUB_WORKSPACE
+        echo %GITHUB_WORKSPACE%
+      shell: cmd
 
     - name: Defining environment variables for a workflow using env keyword
       run: |
-        echo $Greeting
+        echo %Greeting%
       env:
         Greeting: Hello
+      shell: cmd
     
     - name: Create and access global environment variable for linux (bash)
       run: |
-        export variable1="valueExport" 
-        echo $variable1
+        set variable1="valueExport" 
+        echo %variable1%
+      shell: cmd
  
     - name: Use environment variable set in above step
       run: |
-        if[ $variable1 == "" ]; then
-          echo "false"
-        fi
+        IF %variable1%=="" (echo "false")
+    
+      shell: cmd
 
     - name: Generate value in one step and use it in other step (GITHUB_ENV)
       run: |
         echo "action_state=yellow" >> "$GITHUB_ENV"
-        echo $action_state 
+        echo %action_state% 
+      shell: cmd
 
     - name: Use variable set in above step
       run: |
-        if[ $action_state == "" ]; then
-          echo "false"
-        fi
+        IF %action_state%==""  (echo "false")
+    
+      shell: cmd
         
     - name: Is the above variable set a environment variable?
       run: |
-        env		  
+        set
+      shell: cmd  
 
     - name: Access Already set environment variable on runner
       run: |
-        echo $JAVA_HOME
+        echo %MAVEN_HOME%
+      shell: cmd
 
     - name: Storing and access shell variable for a step
       run: |
-        VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-        echo $VERSION
+        set VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+        echo %VERSION%
+      shell: cmd
     
     - name: Is the above variable set a environment variable?
       run: |	  
-        if[ $VERSION == "" ]; then
-          echo "false"
-        fi
+        IF %VERSION%=="" (echo "false")
+      shell: cmd
