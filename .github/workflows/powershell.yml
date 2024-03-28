@@ -35,7 +35,7 @@ jobs:
 
     - name: Generate value in one step and use it in other step (GITHUB_ENV)
       run: |
-        echo "action_state=yellow" >> "$GITHUB_ENV"
+        echo "action_state=yellow" >> "$env:GITHUB_ENV"
         echo $env:action_state 
 
     - name: Use variable generated in above step

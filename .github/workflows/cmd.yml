@@ -40,7 +40,7 @@ jobs:
 
     - name: Generate value in one step and use it in other step (using GITHUB_ENV)
       run: |
-        echo "action_state=yellow" >> "$GITHUB_ENV"
+        echo "action_state=yellow" >> "%GITHUB_ENV%"
         echo %action_state% 
       shell: cmd
 
