@@ -22,7 +22,7 @@ jobs:
       env:
         Greeting: Hello
     
-    - name: Create and access global environment variable for linux (bash)
+    - name: Create and access global environment variable for windows (powershell)
       run: |
         $env:variable1="valueExport" 
         echo $env:variable1
@@ -38,13 +38,13 @@ jobs:
         echo "action_state=yellow" >> "$GITHUB_ENV"
         echo $env:action_state 
 
-    - name: Use variable set in above step
+    - name: Use variable generated in above step
       run: |
-        if($env:action_state -ne "") {
-          echo "false"
+        if($env:action_state -eq "yellow") {
+          echo "true"
         }
         
-    - name: Is the above variable set a environment variable?
+    - name: Is the above variable set as a environment variable?
       run: |
         ls env:		  
 
@@ -52,7 +52,7 @@ jobs:
       run: |
         echo $env:MAVEN_HOME
 
-    - name: Storing and access shell variable for a step
+    - name: Store and access shell variable for a step
       run: |
         $VERSION="abc"   # $VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) |
         echo $env:VERSION

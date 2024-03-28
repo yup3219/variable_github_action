@@ -40,8 +40,8 @@ jobs:
 
     - name: Use variable generated in above step
       run: |
-        if [[ $action_state == "" ]]; then
-          echo "false"
+        if [[ $action_state == "yellow" ]]; then
+          echo "true"
         fi
         
     - name: Is the above variable set as a environment variable?
@@ -52,7 +52,7 @@ jobs:
       run: |
         echo $JAVA_HOME
 
-    - name: Storing and access shell variable for a step
+    - name: Store and access shell variable for a step
       run: |
         VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
         echo $VERSION

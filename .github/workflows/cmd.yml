@@ -46,8 +46,8 @@ jobs:
 
     - name: Use variable generated in above step
       run: |
-        IF "%action_state%"=="" (   
-        echo "false"  
+        IF "%action_state%"=="yellow" (   
+        echo "true"  
         )        
       shell: cmd
         
