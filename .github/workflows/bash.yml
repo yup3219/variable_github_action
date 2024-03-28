@@ -23,19 +23,13 @@ jobs:
     
     - name: Create and access global environment variable for linux (bash)
       run: |
-        export variable1="valueExport" | set variable2="valueSet" 
+        export variable1="valueExport" 
         echo $variable1
-        echo $variable2
-        set variable3="valueSet" | export variable4="valueExport"
-        echo $variable3
-        echo $variable4	
+ 
     - name: Use environment variable set in above step
       run: |
         echo $variable1
-        echo $variable2
-        echo $variable3
-        echo $variable4
-    
+
     - name: Generate value in one step and use it in other step (GITHUB_ENV)
       run: |
         echo "action_state=yellow" >> "$GITHUB_ENV"
@@ -52,7 +46,7 @@ jobs:
 
     - name: Storing and access shell variable for a step
       run: |
-        VERSION = $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+        VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
         echo $VERSION
     
     - name: Is the above variable set a environment variable?
