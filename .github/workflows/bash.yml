@@ -38,13 +38,13 @@ jobs:
         echo "action_state=yellow" >> "$GITHUB_ENV"
         echo $action_state 
 
-    - name: Use variable set in above step
+    - name: Use variable generated in above step
       run: |
         if [[ $action_state == "" ]]; then
           echo "false"
         fi
         
-    - name: Is the above variable set a environment variable?
+    - name: Is the above variable set as a environment variable?
       run: |
         env		  
 
