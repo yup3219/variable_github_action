@@ -15,6 +15,7 @@ jobs:
     - name: Default Environment Variables that github set
       run: |
         echo $GITHUB_WORKSPACE
+
     - name: Defining environment variables for a workflow using env keyword
       run: |
         echo $Greeting
@@ -28,18 +29,25 @@ jobs:
  
     - name: Use environment variable set in above step
       run: |
-        echo $variable1
+        if[ $variable1 == "" ]; then
+          echo "false"
+        fi
 
     - name: Generate value in one step and use it in other step (GITHUB_ENV)
       run: |
         echo "action_state=yellow" >> "$GITHUB_ENV"
-        echo $action_state  | true	
+        echo $action_state 
+
     - name: Use variable set in above step
       run: |
-        echo $action_state	
+        if[ $action_state == "" ]; then
+          echo "false"
+        fi
+        
     - name: Is the above variable set a environment variable?
       run: |
         env		  
+
     - name: Access Already set environment variable on runner
       run: |
         echo $JAVA_HOME
@@ -51,5 +59,6 @@ jobs:
     
     - name: Is the above variable set a environment variable?
       run: |	  
-        echo $VERSION | env
-        env
+        if[ $VERSION == "" ]; then
+          echo "false"
+        fi
