@@ -5,7 +5,7 @@ on:
 
 jobs:
   powershell:
-    name: Access variable on windows
+    name: Access variable on powershell
     runs-on: self-hosted
     steps:
     - name: Print all environment variable
@@ -54,7 +54,7 @@ jobs:
 
     - name: Storing and access shell variable for a step
       run: |
-        $VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+        $VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) | $VERSION="abc"
         echo $env:VERSION
     
     - name: Is the above variable set a environment variable?
