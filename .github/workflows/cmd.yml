@@ -33,7 +33,7 @@ jobs:
  
     - name: Use environment variable set in above step
       run: |
-        IF %variable1%=="" (echo "false")
+        IF %variable1%=="" ( echo "false" )
     
       shell: cmd
 
@@ -45,7 +45,7 @@ jobs:
 
     - name: Use variable set in above step
       run: |
-        IF %action_state%==""  (echo "false")
+        IF %action_state%==""  ( echo "false" )
     
       shell: cmd
         
@@ -67,5 +67,5 @@ jobs:
     
     - name: Is the above variable set a environment variable?
       run: |	  
-        IF %VERSION%=="" (echo "false")
+        IF %VERSION%=="" ( echo "false" )
       shell: cmd

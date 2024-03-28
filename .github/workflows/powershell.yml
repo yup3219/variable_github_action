@@ -40,7 +40,7 @@ jobs:
 
     - name: Use variable set in above step
       run: |
-        if(env:action_state -eq "") {
+        if($env:action_state -eq "") {
           echo "false"
         }
         
