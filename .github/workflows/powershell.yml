@@ -29,7 +29,7 @@ jobs:
  
     - name: Use environment variable set in above step
       run: |
-        if($env:variable1 -eq "") {
+        if($env:variable1 -ne "valueExport") {
           echo "false"
         }
 
@@ -40,7 +40,7 @@ jobs:
 
     - name: Use variable set in above step
       run: |
-        if($env:action_state -eq "") {
+        if($env:action_state -ne "") {
           echo "false"
         }
         
@@ -54,11 +54,11 @@ jobs:
 
     - name: Storing and access shell variable for a step
       run: |
-        $VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) | $VERSION="abc"
+        $VERSION="abc"   # $VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) |
         echo $env:VERSION
     
     - name: Is the above variable set a environment variable?
       run: |	  
-        if($env:VERSION -eq "") {
+        if($env:VERSION -ne "abc") {
           echo "false"
         }
