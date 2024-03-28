@@ -10,9 +10,7 @@ jobs:
     steps:
     - name: Print all environment variable
       run: |
-        echo $Greeting
-      env:
-        Greeting: Hello
+        env
     
     - name: Default Environment Variables that github set
       run: |
@@ -20,16 +18,8 @@ jobs:
     - name: Defining environment variables for a workflow using env keyword
       run: |
         echo $Greeting
-    
-    - name: Storing and access shell variable for a step
-      run: |
-        VERSION = $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-        echo $VERSION
-    
-    - name: Is the above variable set a environment variable?
-      run: |	  
-        echo $VERSION | env
-        env
+      env:
+        Greeting: Hello
     
     - name: Create and access global environment variable for linux (bash)
       run: |
@@ -59,3 +49,13 @@ jobs:
     - name: Access Already set environment variable on runner
       run: |
         echo $SHELL
+
+    - name: Storing and access shell variable for a step
+      run: |
+        VERSION = $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+        echo $VERSION
+    
+    - name: Is the above variable set a environment variable?
+      run: |	  
+        echo $VERSION | env
+        env
