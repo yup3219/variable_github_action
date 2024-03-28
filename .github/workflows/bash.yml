@@ -26,7 +26,7 @@ jobs:
         export variable1="valueExport" | set variable2="valueSet" 
         echo $variable1
         echo $variable2
-        set variable3="valueSet" | export variable4="valueExport
+        set variable3="valueSet" | export variable4="valueExport"
         echo $variable3
         echo $variable4	
     - name: Use environment variable set in above step
@@ -48,7 +48,7 @@ jobs:
         env		  
     - name: Access Already set environment variable on runner
       run: |
-        echo $SHELL
+        echo $JAVA_HOME
 
     - name: Storing and access shell variable for a step
       run: |
