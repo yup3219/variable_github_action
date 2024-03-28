@@ -29,7 +29,7 @@ jobs:
  
     - name: Use environment variable set in above step
       run: |
-        if [ $variable1 == "" ]; then
+        if[ $variable1 == "" ]; then
           echo "false"
         fi
 
@@ -40,7 +40,7 @@ jobs:
 
     - name: Use variable set in above step
       run: |
-        if [ $action_state == "" ]; then
+        if[ $action_state == "" ]; then
           echo "false"
         fi
         
@@ -59,6 +59,6 @@ jobs:
     
     - name: Is the above variable set a environment variable?
       run: |	  
-        if [ $VERSION == "" ]; then
+        if[ $VERSION == "" ]; then
           echo "false"
         fi
